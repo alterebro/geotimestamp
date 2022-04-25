@@ -1,0 +1,28 @@
+{
+  "name": "geotimestamp",
+  "version": "1.0.0",
+  "description": "Latitude, Longitude and Time Encoding",
+  "main": "geotimestamp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alterebro/geotimestamp.git"
+  },
+  "keywords": [
+    "coordinates",
+    "latitude",
+    "longitude",
+    "time",
+    "date",
+    "timestamp",
+    "encode"
+  ],
+  "author": "Jorge Moreno, @alterebro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alterebro/geotimestamp/issues"
+  },
+  "homepage": "https://github.com/alterebro/geotimestamp#readme"
+}
