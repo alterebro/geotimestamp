@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>geotimestamp</title>
+    <link rel="stylesheet" href="https://bit.ly/3wgknNz" />
+</head>
+<body>
+
+    <h1><a href="https://github.com/alterebro/geotimestamp" target="_blank" title="geotimestamp">#</a> geotimestamp</h1>
+    <h2>Latitude, Longitude and Time Encoding</h2>
+    <p>
+        Encode a geographic point location coordinates (latitude, longitude) along with a datetime value
+        into a 15-chars short url-safe Base62 text string of letters and digits.
+        <br />
+        [ <a href="https://github.com/alterebro/geotimestamp" target="_blank">github.com/alterebro/geotimestamp</a> ]
+    </p>
+    <pre>&lt;script src="https://unpkg.com/geotimestamp"&gt;&lt;/script&gt;</pre>
+    <hr />
+
+    <h3>Encode</h3>
+    <form id="encoder">
+        <input type="number" step="any" min="-90" max="90" name="latitude" placeholder="Latitude" required />
+        <input type="number" step="any" min="-180" max="180" name="longitude" placeholder="Longitude" required />
+        <input type="datetime-local" name="datetime" required />
+        <button type="submit" name="encode">Encode</button>
+    </form>
+    <div id="encoder-output"></div>
+    <hr />
+
+    <h3>Decode</h3>
+    <form id="decoder">
+        <input type="text" minlength="15" maxlength="15" name="uid" placeholder="#uid" />
+        <button type="submit" name="encode">Decode</button>
+    </form>
+    <div id="decoder-output"></div>
+    <hr />
+    <p><small>MIT License, 2022 ( Jorge Moreno, <strong><a href="https://twitter.com/alterebro" target="_blank" title="Jorge Moreno, @alterebro">@alterebro</a></strong> )</small></p>
+
+<script charset="utf-8" src="https://unpkg.com/geotimestamp"></script>
+<script charset="utf-8">
+
+document.querySelector('#encoder').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let _encoded = geotimestamp.encode(
+        parseFloat(e.target[0].value),
+        parseFloat(e.target[1].value),
+        Date.parse(`${encodeURI(e.target[2].value)}Z`)
+    );
+    document.querySelector('#encoder-output').innerHTML = `<pre>${_encoded}</pre>`;
+});
+
+document.querySelector('#decoder').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let _decoded = geotimestamp.decode( e.target[0].value );
+    let _error = ( _decoded.lat < -90 || _decoded.lat > 90 || _decoded.lng < -180 || _decoded.lng > 180 );
+    let _output = [];
+        _output.push( `Code : ${e.target[0].value}` );
+        _output.push( `Latitude : ${_decoded.lat}` );
+        _output.push( `Longitude : ${_decoded.lng}` );
+        _output.push( `Timestamp : ${_decoded.timestamp}` );
+        _output.push( `DateTime : ${new Date(_decoded.timestamp)}` );
+        _output.push( `Map : <a href="https://www.google.com/maps/@${_decoded.lat},${_decoded.lng},12z" target="_blank">@${_decoded.lat},${_decoded.lng}</a>` );
+
+    document.querySelector('#decoder-output').innerHTML = ( _error )
+        ? `<pre>Wrong Data String</pre>`
+        : `<pre>${_output.join('\n')}</pre>`;
+});
+
+</script>
+</body>
+</html>
