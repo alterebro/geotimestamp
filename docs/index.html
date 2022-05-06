@@ -60,7 +60,7 @@ document.querySelector('#decoder').addEventListener('submit', (e) => {
         _output.push( `Longitude : ${_decoded.lng}` );
         _output.push( `Timestamp : ${_decoded.timestamp}` );
         _output.push( `DateTime : ${new Date(_decoded.timestamp)}` );
-        _output.push( `Map : <a href="https://www.google.com/maps/@${_decoded.lat},${_decoded.lng},12z" target="_blank">@${_decoded.lat},${_decoded.lng}</a>` );
+        _output.push( `Map : <a href="https://www.google.com/maps/@${_decoded.lat},${_decoded.lng},17z" target="_blank">@${_decoded.lat},${_decoded.lng}</a>` );
 
     document.querySelector('#decoder-output').innerHTML = ( _error )
         ? `<pre>Wrong Data String</pre>`
