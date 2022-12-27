@@ -1,6 +1,6 @@
 {
   "name": "geotimestamp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Latitude, Longitude and Time Encoding",
   "main": "geotimestamp.js",
   "unpkg": "geotimestamp.js",
